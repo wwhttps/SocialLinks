@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="Image/png" href="C:\Users\lucas\OneDrive\Pictures\Screenshots\WebsiteProfile-2.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Social Links</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #580069;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: auto; /* Allow scrolling */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgb(195, 0, 255);
+            max-width: 90%;
+            width: 400px;
+            color: black;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .links a {
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            background: #0077b5;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .links a.youtube {
+            background: #ff0000;
+        }
+        .links a.twitch {
+            background: #9146FF;
+        }
+        .links a:hover {
+            opacity: 0.8;
+        }
+        .counter {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .sponsor {
+            position: absolute;
+            bottom: 30px;
+            left: -10px;
+            width: 100px;
+            height: 100px;
+        }
+        .sponsor img {
+            width: 180%;
+            height: 180%;
+            object-fit: contain;
+            transition: transform 2s ease-in-out;
+            background: transparent;
+        }
+        .copyright {
+            position: absolute;
+            bottom: -50px; /* Adjusted position */
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: auto;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Follow Me</h1>
+        <div class="links">
+            <a href="https://www.instagram.com/lucas__henr1/" target="_blank">Instagram</a>
+            <a href="https://www.youtube.com/@MCLKzim/featured" target="_blank" class="youtube">YouTube</a>
+            <a href="https://www.twitch.tv/lucs1_" target="_blank" class="twitch">Twitch</a>
+        </div>
+        <div class="counter">👀Visitors: <span id="visit-count">0</span></div>
+    </div>
+
+    <!-- Sponsor Image that redirects to Facebook -->
+    <div class="sponsor">
+        <a href="https://api.whatsapp.com/send/?phone=6993060469&text&type=phone_number&app_absent=0" target="_blank"> <!-- Link to Whatsapp Profile -->
+            <img id="sponsor-image" src="C:\Users\lucas\OneDrive\Pictures\sponsor-image.png" alt="Sponsor">
+        </a>
+    </div>
+
+    <div class="copyright">© 2025 Lucas Henry. All rights reserved.</div>
+
+    <script>
+        const visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
+        localStorage.setItem('visitCount', visitCount + 1);
+        document.getElementById('visit-count').innerText = visitCount + 1;
+
+        function spinSponsor() {
+            const sponsorImage = document.getElementById('sponsor-image');
+            sponsorImage.style.transform = 'rotate(720deg) scale(1.2)';
+            setTimeout(() => {
+                sponsorImage.style.transform = 'rotate(0deg) scale(1)';
+            }, 2000);
+        }
+
+        setInterval(spinSponsor, 7000);
+
+        // Track the last scroll position and direction
+        let lastScrollTop = 0;
+        let isScrollingDown = false;
+        let scrollTimeout;
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Detect scroll direction: if scroll position increases, user is scrolling down
+            if (scrollTop > lastScrollTop) {
+                isScrollingDown = true;
+            } else {
+                isScrollingDown = false;
+            }
+
+            // Only scroll back up when the user scrolls down and stops
+            if (isScrollingDown) {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    window.scrollTo(0, 0);  // Scroll back to the top after stopping scrolling
+                }, 150); // Wait for 150ms of inactivity
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll position
+        });
+    </script>
+</body>
+</html>
