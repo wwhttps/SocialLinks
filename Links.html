@@ -51,6 +51,9 @@
         .links a.twitch {
             background: #9146FF;
         }
+        .links a.tiktok {
+            background: #000000;
+        }
         .links a:hover {
             opacity: 0.8;
         }
@@ -93,13 +96,14 @@
             <a href="https://www.instagram.com/luquetalive/" target="_blank">Instagram</a>
             <a href="https://www.youtube.com/@LuquetaLive" target="_blank" class="youtube">YouTube</a>
             <a href="https://www.twitch.tv/luquetaon" target="_blank" class="twitch">Twitch</a>
+            <a href="https://www.tiktok.com/@luquetalive" target="_blank" class="tiktok">TikTok</a>
         </div>
         <div class="counter">👀Visitors: <span id="visit-count">0</span></div>
     </div>
 
-    <!-- Sponsor Image that redirects to Facebook -->
+    <!-- Sponsor Image that redirects to WhatsApp -->
     <div class="sponsor">
-        <a href="https://api.whatsapp.com/send/?phone=6993060469&text&type=phone_number&app_absent=0" target="_blank"> <!-- Link to Whatsapp Profile -->
+        <a href="https://api.whatsapp.com/send/?phone=6993060469&text&type=phone_number&app_absent=0" target="_blank"> 
             <img id="sponsor-image" src="sponsor-image.png" alt="Sponsor">
         </a>
     </div>
@@ -129,22 +133,20 @@
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // Detect scroll direction: if scroll position increases, user is scrolling down
             if (scrollTop > lastScrollTop) {
                 isScrollingDown = true;
             } else {
                 isScrollingDown = false;
             }
 
-            // Only scroll back up when the user scrolls down and stops
             if (isScrollingDown) {
                 clearTimeout(scrollTimeout);
                 scrollTimeout = setTimeout(function() {
-                    window.scrollTo(0, 0);  // Scroll back to the top after stopping scrolling
-                }, 150); // Wait for 150ms of inactivity
+                    window.scrollTo(0, 0);  
+                }, 150); 
             }
 
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll position
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
     </script>
 </body>
